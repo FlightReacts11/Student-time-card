@@ -1,0 +1,98 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--gray);
+    font-family: 'Red Hat Display', Arial, Helvetica, sans-serif;
+
+}
+
+:root {
+    --white: #ffffff;
+    --gray: #e5e5e5;
+    --darkblue: #3a86ff;
+    --gold: #fca311;
+    --offblack: #01161e;
+}
+
+.bg-wrapper {
+    background-color: var(--white);
+    padding: 10px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 10px 5px 10px 1px;
+}
+
+header {
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.month-day-h2 {
+    text-align: center;
+    padding: 40px 0px 20px 0px;
+}
+
+.month-day-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-size: 17px;
+}
+
+.input-group select {
+    padding: 10px 0px;
+    border-radius: 8px;
+}
+
+/*Input Hours*/ 
+
+.input-flex {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding-bottom: 70px;
+}
+
+input {
+    padding: 12px;
+    border-radius: 5px;
+}
+
+.distribute-button {
+    color: var(--white);
+    background-color: var(--darkblue);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.print-section {
+    display: flex;
+    justify-content: center;
+}
+
+.print-button {
+    color: var(--white);
+    background-color: var(--offblack);
+    display: flex;
+    gap: 8px;
+    font-size: 16px;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
