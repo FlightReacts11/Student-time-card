@@ -6,19 +6,24 @@
     <title>Document</title>
     <link rel="stylesheet" href="index.css">
 
+    <!--Red Hat font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!--Header-->
+
+    <!--Background wrapper-->
         <div class="bg-wrapper">
+
+            <!--Header-->
     <header>
     <h1>Student Time Card</h1>
     </header>
     
-    <!--Month and Day selector-->
+
+    <!--Month selector-->
     <section class="month-day">
         <h2 class="month-day-h2">Choose a month and day</h2>
         <div class="month-day-container">
@@ -42,6 +47,7 @@
         </select>
         </div>
 
+        <!--Day selector-->
         <div class="input-group">
          <label for="day-select">Choose a day:</label>
         <select name="month" id="day-select">
@@ -83,22 +89,41 @@
 
      </section>
 
+
+
      <!--Input Hours field-->
      <section class="input-section">
         <h2 class="month-day-h2">Input Hours Below</h2>
         <div class="input-flex">
      <input type="number" min="0" placeholder="e.g, 8">
-            <button class="distribute-button">Distribute Hours</button>
+            <button id="distribute-button" class="distribute-button">Distribute Hours</button>
      </div>
       </section>
 
+
+      <!--Print Button-->
       <section class="print-section">
-      <button id="print" class="print-button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer-fill" viewBox="0 0 16 16">
+      <button id="print-button" class="print-button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer-fill" viewBox="0 0 16 16">
     <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm5 8H6a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
     <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
 </svg>Print To PDF</button>
-     </div>
+
+
+<!--Table Made with .innerHTML (JS)-->
+    <div id="table-container" class="table-container">
+        <table id="main-table">
+            <thead id ="table-head" class="table-head">
+
+            </thead>
+            <tbody id="table-body" class="table-body">
+
+            </tbody>
+        </table>
+    </div>
      </section>
+     </div>
+
+
 
     <script src="index.js">
 
