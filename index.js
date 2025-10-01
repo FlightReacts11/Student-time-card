@@ -19,6 +19,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const monthSelect = document.getElementById("month-select");
     const daySelect = document.getElementById("day-select");
 
+    // Pulls the day from my HTML select tag since im not using a loop //
+    let selectedDay = daySelect.value;
+
     // Table Elements //
     const tableContainer = document.getElementById("table-container");
     const mainTable = document.getElementById("main-table");
@@ -29,8 +32,63 @@ document.addEventListener("DOMContentLoaded", function() {
     // Event Listeners //
     
     distributeBtn.addEventListener("click", timeDistribution);
-    tableBody.addEventListener("input", generateTable)
+    tableBody.addEventListener("input", updateValues);
     printBtn.addEventListener("click", () => window.print());
+
+
+    // Table generation for .innerHTML //
+
+    function generateTable() {
+        tableHead.innerHTML = '';
+        tableBody.innerHTML = '';
+
+        const selectedMonth = monthSelect.value;
+
+        generateHeader();
+        daysInMonth(daySelect);
+        monthsInYear(monthSelect);
+        updateValues();
+    }
+
+    function generateHeader() {
+        const headerRow = document.createElement('tr');
+        let headerHTML = `<th class="p-2 border border-light text-left font-semibold text-label">Day</th>`;
+        ACTIVITY_NAMES.forEach(name => {
+            headerHTML += `th class="p-2 border border-light font-semibold text-label text-center">${name}</th>`;
+        });
+        headerHTML += `<th class="p-2 border border-light font-semibold text-total-hours">Daily Total Hours</th>`;
+        headerHTML += `<th class="p-2 border border-light font-semibold text-total-mins">Daily Total Mins</th>`;
+
+        headerRow.innerHTML = headerHTML;
+         tableHead.appendChild(headerRow);
+    }
+
+    function daysInMonth() {
+        for (let day = 1; day <= 31; day++) {
+            const shortMonth = day > daysInMonth;
+            const row = document.createElement('tr');
+            row.classList.add('border-b', 'border-light');
+            if (isInactive) row.classList.add('inactive-row', 'text-disabled');
+
+            let rowHTML = `<td class="p-2 border border-light font-medium">${day}</td>`;
+
+            for (let i = 0; i < NUM_ACTIVITY_ROWS; i++) {
+            rowHTML += `<td class="p-1 border border-light ${isInactive ? 'inactive-cell' : ''}">
+             <input type="number" min="0" class="w-full text-center bg-transparent focus:outline-none focus-highlight table-cell-input p-1" ${isInactive ? 'disabled' : ''} data-day="${day}" data-activity="${i}">
+             </td>`;
+            }
+
+            rowHTML += `<td class="p-2 border border-light font-bold text-center text-total-hours" id="day-hr-total-${day}">0.00</td>`;
+            rowHTML += `<td class="p-2 border border-light font-bold text-center text-total-mins" id="day-min-total-${day}">0</td>`;
+            row.innerHTML = rowHTML;
+            tableBody.appendChild(row);
+
+        }
+    }
+
+    
+
+
 
 
 });
