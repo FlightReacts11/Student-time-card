@@ -63,6 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
          tableHead.appendChild(headerRow);
     }
 
+    // For Loop that determines number of days in the month. 31 is set as a normal month //
     function daysInMonth() {
         for (let day = 1; day <= 31; day++) {
             const shortMonth = day > daysInMonth;
@@ -83,12 +84,52 @@ document.addEventListener("DOMContentLoaded", function() {
             row.innerHTML = rowHTML;
             tableBody.appendChild(row);
 
+            generateTotalRows();
+
+        }
+    }
+    
+
+    // Bottom Row For Totals. Minutes first then hours //
+    function generateTotalRows() {
+    const bottomRow = document.createElement('tr');
+    bottomRow.classList.add('font-bold', 'total-row-bg', 'print-total-row');
+    let activityMinHTML = `<td class="p-2 border border-medium text-left">Activity Total (Mins)</td>`;
+    for (let i = 0; i < NUM_ACTIVITY_ROWS; i++) {
+        activityMinHTML += `<td class="p-2 border border-medium text-center" id="activity-hr-total-${i}">0.00</td>`;
+    }
+    activityMinHTML += `<td class="p-2 border border-medium text-center grand-total-hours" id="grand-hr-total">0.00</td>`;
+    activityMinHTML += `<td class="p-2 border border-medium text-center grand-total-mins" id="grand-min-total">0</td>`;
+    activityMinRow.innerHTML = activityMinHTML;
+    tableBody.appendChild(bottomRow);
+
+    const activityHourRow = document.createElement('tr');
+    activityHourRow.classList.add('font-bold', 'total-row-bg', 'print-total-row');
+    let activityHourHTML = `<td class="p-2 border border-medium text-left">Activity Total (Hrs) </td>`;
+    for (let i = 0; i < NUM_ACTIVITY_ROWS; i++) {
+        activityHourHTML += `<td class="p-2 border border-medium text-center" id="activity-hr-total-${i}"> 0.00</td>`;
+    }
+    activityHourHTML += `<td class="total-row-bg"></td><td class="total-row-bg"</td>`;
+    activityHourRow.innerHTML = activityHourHTML;
+
+    }
+
+    // Ensures box only accepts numbers //
+    function hourInput(event) {
+        if (event.target.matches('input[type="number"]')) {
+            updateTotals();
         }
     }
 
+    // Calculation logic //
+
+    function calculateAll() {
+        const daysInMonth = new Date(currentYear, currentMonth, 0)
+        let totalMins = 0;
+
+    }
+
     
-
-
 
 
 });
