@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", function() {
         "Child Nutrition & Hygiene",
         "Child Development / Observation",
         "Child Activity Supervision",
-        "Consultation Techniques"
+        "Consultation Techniques",
+        "Professionalism"
     ];
 
     // Distribute Hours and Print Button //
@@ -19,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const monthSelect = document.getElementById("month-select");
     const daySelect = document.getElementById("day-select");
 
-    // Pulls the day from my HTML select tag since im not using a loop //
+    // Pulls the day from my HTML select tag since its not using a loop for that //
     let selectedDay = daySelect.value;
 
     // Table Elements //
@@ -49,6 +50,8 @@ document.addEventListener("DOMContentLoaded", function() {
         monthsInYear(monthSelect);
         updateValues();
     }
+
+    // Geneerate Header // 
 
     function generateHeader() {
         const headerRow = document.createElement('tr');
@@ -124,8 +127,56 @@ document.addEventListener("DOMContentLoaded", function() {
     // Calculation logic //
 
     function calculateAll() {
-        const daysInMonth = new Date(currentYear, currentMonth, 0)
+        const daysInMonth = new Date(currentYear, currentMonth, 0).getDate();
         let totalMins = 0;
+
+        for (let day = 1; day <= daysInMonth; day++) {
+            let dayMinuteTotal = 0;
+            for (let activity = 0; activity < NUM_ACTIVITY_ROWS; activity++) {
+                const input = tableBody.querySelector(`input[data-day="${day}"][data-activity"${activity}"]`);
+                dayMinuteTotal += parseInt(input.value, 10) || 0;
+            }
+            document.getElementById(`get-min-total-${day}`).textContent = dayMinuteTotal;
+            document.getElementById(`day-hour-total-${day}`).textContent = (dayHourTotal / 60).toFixed(2);
+        }
+
+
+        for (let activity = 0; activity < NUM_ACTIVITY_ROWS; activity++) {
+
+            // Math for each activity upon user hour input //
+
+            let displayMinutes = dayMinuteTotal;
+
+            const individualActivity = ROW_NAMES[activity];
+            if (individualActivity === "Safety Training") {
+                let displayMinutes = Math.floor(dayMinuteTotal / 0.00125);
+
+            } else if (individualActivity === "Health & First Aid") {
+                let displayMinutes = Math.floor(dayMinuteTotal / 0.05);
+
+            } else if (individualActivity === "Admin Procedures") {
+                let displayMinutes = Math.floor(dayMinuteTotal / 0.005);
+
+            } else if (individualActivity === "Child Nutrition & Hygiene") {
+                let displayMinutes = Math.floor(dayMinuteTotal / 0.25);
+
+            } else if (individualActivity === "Child Development / Observation") {
+                let displayMinutes = Math.floor(dayMinuteTotal / 0.275);
+
+            } else if (individualActivity === "Child Activity Supervision") {
+                let displayMinutes = Math.floor(dayMinuteTotal / 0.3625);
+
+            } else if (individualActivity === "Consultation Techniques") {
+                let displayMinutes = Math.floor(dayMinuteTotal / 0.02);
+
+            } else if (individualActivity === "Professionalism") {
+                let displayMinutes = Math.floor(dayMinuteTotal / 0.025)
+            }
+
+            totalMins += dayMinuteTotal;
+
+            document.
+        }
 
     }
 
