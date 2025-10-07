@@ -173,11 +173,62 @@ document.addEventListener("DOMContentLoaded", function() {
                 let displayMinutes = Math.floor(dayMinuteTotal / 0.025)
             }
 
+            // Calculate the sum // 
+
             totalMins += dayMinuteTotal;
 
-            document.
+            document.getElementById(`activity-min-total-${activity}`).textContent = displayMinutes;
+            document.getElementById(`activity-hr-total-${activity}`).textContent (displayMinutes / 60).toFixed(2);
         }
 
+        document.getElementById('grand-min-total').textContent = totalMins;
+        document.getElementById('grand-hr-total').textContent = (totalMins / 60).toFixed(2);
+
+
+        for (let day = daysInMonth + 1; day <= 31; day++) {
+            document.getElementById(`get-min-total-${day}`).textContent = '0';
+            document.getElementById(`day-hour-total-${day}`).textContent = '0.00';
+                }
+            }
+
+            function timeDistribution() {
+                const day = parsenInt(daySelect.value, 10);
+                const totalHours = parseFloat(singleDayHoursInput.value);
+
+                daySelect.classList.remove('form-input-error');
+                singleDayHoursInput.classList.remove('form-input-error');
+
+                if (!day) {
+                    daySelect.classList.add('form-input-error');
+                    daySelect.focus();
+                    return;
+                }
+
+                if (isNaN(totalHours)) {
+                    daySelect.classList.add('form-input-error');
+                    singleDayHoursInput.focus();
+                    return;
+                }
+
+                const totalMinutes = totalHours * 60;
+                const minutesPerSlot = Math.floor(totalMinutes / NUM_OF_ROWS);
+                let remainingMinutes = totalMinutes % NUM_OF_ROWS;
+
+                for (let activity = 0; activity < NUM_OF_ROWS; activity++) {
+                    const input = tableBody.querySelector(`input[data-day="${day}"][data-activity="${activity}"]`);
+                    if (input) {
+                        let minutesForThisSlot = minutesPerSlot;
+                        if (remainingMinutes > 0) {
+                            minutesForThisSlot++;
+                            remainingMinutes--;
+                        }
+                        input.value = minutesForThisSlot;
+                    }
+                }
+                calculateAll();
+            }
+
+            
     }
 
     
