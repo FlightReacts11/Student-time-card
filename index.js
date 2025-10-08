@@ -1,4 +1,4 @@
-   document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function() {
             const NUM_OF_ROWS = 8;
             const ROW_NAMES = [
                 "Safety Training", "Health & First Aid", "Admin Procedures",
@@ -131,26 +131,8 @@
                         activityMinuteTotal += parseInt(input.value, 10) || 0;
                     }
                     
+                    // The custom math logic is removed from here. This section now only performs a simple sum.
                     let displayMinutes = activityMinuteTotal;
-                    const individualActivity = ROW_NAMES[activity];
-
-                    if (individualActivity === "Safety Training") {
-                        displayMinutes = Math.floor(activityMinuteTotal / 0.0125);
-                    } else if (individualActivity === "Health & First Aid") {
-                        displayMinutes = Math.floor(activityMinuteTotal / 0.05);
-                    } else if (individualActivity === "Admin Procedures") {
-                        displayMinutes = Math.floor(activityMinuteTotal / 0.005);
-                    } else if (individualActivity === "Child Nutrition & Hygiene") {
-                        displayMinutes = Math.floor(activityMinuteTotal / 0.25);
-                    } else if (individualActivity === "Child Development / Observation") {
-                        displayMinutes = Math.floor(activityMinuteTotal / 0.275);
-                    } else if (individualActivity === "Child Activity Supervision") {
-                        displayMinutes = Math.floor(activityMinuteTotal / 0.3625);
-                    } else if (individualActivity === "Consultation Techniques") {
-                         displayMinutes = Math.floor(activityMinuteTotal / 0.02);
-                    } else if (individualActivity === "Professionalism") {
-                         displayMinutes = Math.floor(activityMinuteTotal / 0.025);
-                    }
                     
                     totalMins += activityMinuteTotal;
 
